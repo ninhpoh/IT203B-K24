@@ -1,0 +1,28 @@
+package btvn.bt05;
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        TicketPool poolA = new TicketPool("A", 3);
+        TicketPool poolB = new TicketPool("B", 2);
+        TicketPool poolC = new TicketPool("C", 4);
+
+        List<TicketPool> pools = Arrays.asList(poolA, poolB, poolC);
+
+        TimeoutManager tm = new TimeoutManager(pools);
+        tm.setDaemon(true);
+        tm.start();
+
+        BookingCounter c1 = new BookingCounter("Quầy 1", poolA, true);
+        BookingCounter c2 = new BookingCounter("Quầy 2", poolA, false);
+        BookingCounter c3 = new BookingCounter("Quầy 3", poolA, false);
+        BookingCounter c4 = new BookingCounter("Quầy 4", poolB, true);
+        BookingCounter c5 = new BookingCounter("Quầy 5", poolC, false);
+
+        c1.start();
+        c2.start();
+        c3.start();
+        c4.start();
+        c5.start();
+    }
+}
