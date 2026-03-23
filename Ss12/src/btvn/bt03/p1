@@ -1,0 +1,6 @@
+Vì
+- Khi gọi thủ tục lưu trữ (Stored Procedure) có tham số OUT, JDBC cần biết trước kiểu dữ liệu của tham
+số đó để chuẩn bị vùng nhớ nhận giá trị trả về.
+
+- Nếu không đăng ký bằng registerOutParameter(), JDBC không biết phải đọc dữ liệu kiểu gì,
+dẫn đến lỗi “The column index is out of range” hoặc không lấy được giá trị.

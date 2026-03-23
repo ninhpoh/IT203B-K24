@@ -1,0 +1,3 @@
+- Nếu dùng Statement và nối chuỗi trực tiếp, giá trị số sẽ được chuyển thành chuỗi theo quy tắc định dạng của hệ điều hành (Locale).
+
+Cơ chế của PreparedStatement - JDBC sẽ tự động chuyển đổi giá trị số thành định dạng chuẩn của SQL (luôn dùng dấu chấm cho số thực).

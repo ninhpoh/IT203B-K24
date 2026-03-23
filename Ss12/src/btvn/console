@@ -1,0 +1,35 @@
+create database hospital;
+use hospital;
+drop table bt01;
+create table bt01(
+    id int primary key,
+    doctor_name varchar(50) not null,
+    code varchar(50) not null,
+    password varchar(50) not null
+);
+
+create table bt02(
+    id int primary key,
+    temperature double not null,
+    heart_rate int not null
+);
+
+CREATE TABLE bt03 (
+    id INT PRIMARY KEY,
+    surgery_name VARCHAR(100) NOT NULL,
+    base_cost DECIMAL(10,2) NOT NULL,
+    insurance_fee DECIMAL(10,2) NOT NULL
+);
+
+DELIMITER //
+CREATE PROCEDURE GET_SURGERY_FEE(
+    IN surgery_id INT,
+    OUT total_cost DECIMAL(10,2)
+)
+BEGIN
+    SELECT base_cost + insurance_fee
+    INTO total_cost
+    FROM bt03
+    WHERE id = surgery_id;
+END //
+DELIMITER ;

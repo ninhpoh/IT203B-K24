@@ -1,0 +1,4 @@
+- Khi dùng Statement và nối chuỗi trực tiếp, dữ liệu đầu vào của người dùng sẽ trở thành một phần của câu SQL.
+- voi  ' OR '1'='1 có thể đăng nhập mà không cần mật khẩu thật.
+- Cơ chế của PreparedStatement cho phép viết câu SQL với placeholder (?) thay vì nối chuỗi.
+- dữ liệu đầu vào được truyền vào như tham số chứ không phải một phần của câu lệnh SQL.
