@@ -1,0 +1,6 @@
+Điều này vi phạm nguyên tắc Transaction vì:
+- Transaction phải đảm bảo Atomicity: hoặc tất cả thành công, hoặc tất cả thất bại.
+- Nếu chỉ in lỗi mà không rollback, dữ liệu đã thay đổi ở bước 1 (trừ tiền trong ví)
+vẫn nằm trong trạng thái “treo” chưa commit. Kết nối giữ transaction mở, gây lãng phí tài nguyên và có thể khóa bảng,
+ảnh hưởng đến các thao tác khác.
+- Hành động thiết yếu bị bỏ quên chính là conn.rollback() để khôi phục cơ sở dữ liệu về trạng thái an toàn trước khi lỗi xảy ra.

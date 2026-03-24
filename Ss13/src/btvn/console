@@ -1,0 +1,47 @@
+create database bt01;
+use bt01;
+
+
+CREATE TABLE Medicine_Inventory (
+    medicine_id INT PRIMARY KEY AUTO_INCREMENT,
+    medicine_name VARCHAR(100) NOT NULL,
+    quantity INT NOT NULL DEFAULT 0
+);
+
+
+CREATE TABLE Prescription_History (
+    history_id INT PRIMARY KEY AUTO_INCREMENT,
+    patient_id INT NOT NULL,
+    medicine_id INT NOT NULL,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (medicine_id) REFERENCES Medicine_Inventory(medicine_id)
+);
+
+-- Tạo database
+CREATE DATABASE IF NOT EXISTS bt02;
+USE bt02;
+
+-- Bảng Ví bệnh nhân
+CREATE TABLE Patient_Wallet (
+                                patient_id INT PRIMARY KEY,
+                                patient_name VARCHAR(100) NOT NULL,
+                                balance DOUBLE NOT NULL DEFAULT 0
+);
+
+-- Bảng Hóa đơn viện phí
+CREATE TABLE Invoices (
+                          invoice_id INT PRIMARY KEY AUTO_INCREMENT,
+                          patient_id INT NOT NULL,
+                          amount DOUBLE NOT NULL,
+                          status VARCHAR(20) DEFAULT 'UNPAID',
+                          FOREIGN KEY (patient_id) REFERENCES Patient_Wallet(patient_id)
+);
+
+-- Thêm dữ liệu mẫu
+INSERT INTO Patient_Wallet (patient_id, patient_name, balance)
+VALUES (202, 'Nguyen Van A', 1000000),
+       (203, 'Tran Thi B', 2000000);
+
+INSERT INTO Invoices (patient_id, amount, status)
+VALUES (202, 500000, 'UNPAID'),
+       (203, 800000, 'UNPAID');
